@@ -10,12 +10,16 @@ public class Main {
 
         swap(arr, pivotIndex,high);
 
-        
-//        ArrayList<Integer> usedPivots = new ArrayList<Integer>();
+        int i = low - 1
 
-
-
-        return -1;
+        for(int j = low; j < high; j++) {
+            if (arr[j] <= pivot) {
+                i++;
+                swap(arr, i, j);
+            }
+        }
+        swap(arr,i+1,high);
+        return i+1;
     }
 
     public void swap(int[] arr, int i, int j) {
@@ -25,7 +29,12 @@ public class Main {
     }
 
     public void quickSort(int[] arr, int low, int high) {
+        if (low < high) {
+            int pivotIndex = partition(arr, low, high);
 
+            quickSort(arr, low, pivotIndex-1);
+            quickSort(arr, pivotIndex+1, high);
+        }
     }
 
     public static void main(String[] args) {
